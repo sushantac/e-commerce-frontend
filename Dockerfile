@@ -10,9 +10,12 @@ RUN npm run build
 FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
-COPY --from=builder /app/public ./public
+# Copy standalone output
 COPY --from=builder /app/.next/standalone ./
+# Copy static assets
 COPY --from=builder /app/.next/static ./.next/static
+# Copy public folder if it exists
+COPY --from=builder /app/public ./public
 
 EXPOSE 3000
 CMD ["node", "server.js"]
