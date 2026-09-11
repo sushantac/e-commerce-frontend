@@ -27,6 +27,7 @@ import { toast } from "@/hooks/use-toast";
 import { api } from "@/lib/api";
 import { formatCurrency, getInitials } from "@/lib/utils";
 import type { Paginated, Product } from "@/lib/types";
+import { ReviewsSection } from "@/components/reviews-section";
 
 function ProductSkeleton() {
   return (
@@ -315,6 +316,8 @@ export default function ProductDetailPage() {
           </Button>
         </div>
       </div>
+
+      {product.id > 0 && <ReviewsSection productId={product.id} />}
 
       {relatedProducts.length > 0 && (
         <section className="mt-16" aria-labelledby="related-heading">
