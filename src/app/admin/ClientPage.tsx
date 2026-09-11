@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Package, Users, DollarSign, ArrowRight } from "lucide-react";
+import { Package, Users, DollarSign, ArrowRight, MessageSquareText } from "lucide-react";
 
 import { api } from "@/lib/api";
 import { useAuth } from "@/hooks/use-auth";
@@ -298,9 +298,10 @@ export default function AdminDashboardPage() {
       </div>
 
       <Tabs defaultValue="orders" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="orders">Manage Orders</TabsTrigger>
           <TabsTrigger value="users">Manage Users</TabsTrigger>
+          <TabsTrigger value="reviews">Moderate Reviews</TabsTrigger>
         </TabsList>
 
         <TabsContent value="orders">
@@ -321,6 +322,19 @@ export default function AdminDashboardPage() {
             </p>
             <Button asChild className="mt-6">
               <Link href="/admin/users">Manage Users</Link>
+            </Button>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="reviews">
+          <div className="text-center py-8">
+            <MessageSquareText className="mx-auto h-12 w-12 text-muted-foreground" aria-hidden />
+            <h3 className="mt-4 text-lg font-medium">Review Moderation</h3>
+            <p className="mt-2 text-muted-foreground">
+              Approve or reject customer product reviews.
+            </p>
+            <Button asChild className="mt-6">
+              <Link href="/admin/reviews">Moderate Reviews</Link>
             </Button>
           </div>
         </TabsContent>

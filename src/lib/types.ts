@@ -223,3 +223,43 @@ export interface PaginatedAdminUsers {
   totalElements: number;
   totalPages: number;
 }
+
+// ─── Review Service (review-service.yaml) ───────────────────────────────
+
+export type ReviewStatus = "PENDING" | "APPROVED" | "REJECTED";
+
+export interface Review {
+  id: number;
+  productId: number;
+  userId: number;
+  rating: number;
+  title?: string;
+  body?: string;
+  verifiedPurchase: boolean;
+  status: ReviewStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ReviewRequest {
+  productId: number;
+  rating: number;
+  title?: string;
+  body?: string;
+}
+
+export interface ReviewSummary {
+  productId: number;
+  averageRating: number;
+  totalReviews: number;
+  ratingDistribution: Record<string, number>;
+}
+
+export interface PaginatedReviews {
+  content: Review[];
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
+}
